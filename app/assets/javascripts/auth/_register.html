@@ -2,15 +2,18 @@
   <h1>Register</h1>
 </div>
 
-<form ng-submit="register()">
+<form ng-submit="register()" name="form" novalidate>
   <div class="input-group">
-    <input type="email" class="form-control" placeholder="Email" ng-model="user.email">
+    <input type="email" class="form-control" name="email" placeholder="Email" ng-model="user.email" required>
   </div>
   <div class="input-group">
-    <input type="text" class="form-control" placeholder="Username" ng-model="user.username">
+    <input type="text" class="form-control" name="uname" placeholder="Username" ng-model="user.username" required>
   </div>
   <div class="input-group">
-    <input type="password" class="form-control" placeholder="Password" ng-model="user.password">
+    <input type="password" class="form-control" name="password" placeholder="Password" ng-model="user.password" required ng-minlength='8'>
+    <p class ="help-block" ng-show="form.password.$error.minlength || form.password.$invalid"> password must be 8 chars atleast</p>
   </div>
-  <input type="submit" class="btn btn-default" value="Register">
+  <input type="submit" class="btn btn-default" value="Register" ng-disabled="form.$invalid">
 </form>
+
+
